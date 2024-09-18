@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>page crash demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100%;
+    }
+    .title {
+      padding: 20px;
+      text-align: center;
+    }
+    .list {
+      width: 400px;
+      margin: 30px auto;
+      list-style: none;
+    }
+    .item {
+      position: relative;
+      padding-left: 20px;
+      background-color: #eaeaea;
+    }
+    .item + .item {
+      margin-top: 10px;
+    }
+    .item-content {
+      line-height: 60px;
+    }
+    .handler {
+      position: absolute;
+      padding: 4px 6px;
+      top: 50%;
+      right: 4px;
+      transform: translateY(-50%);
+      z-index: 2;
+      cursor: pointer;
+    }
+    .remote-absolute-box {
+      position: relative;
+      top: 0;
+      /* when left(px) in [70000, 999999], and try to drag element(li.item) will crash */
+      left: 70000px;
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 class="title">document</h1>
+    <div>
+      <div class="list-wrap">
+        <ul id="items" class="list">
+          <li class="item" draggable="true">
+            <div class="item-content">list 1</div>
+            <div class="handler">handler</div>
+            <div class="remote-absolute-box">something remote</div>
+          </li>
+          <li class="item" draggable="true">
+            <div class="item-content">list 2</div>
+            <div class="handler">handler</div>
+            <div class="remote-absolute-box">something remote</div>
+          </li>
+          <li class="item" draggable="true">
+            <div class="item-content">list 3</div>
+            <div class="handler">handler</div>
+            <div class="remote-absolute-box">something remote</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
